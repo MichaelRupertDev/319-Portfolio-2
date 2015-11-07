@@ -121,6 +121,26 @@ Controller : {
 		document.getElementById("labelP2S").value = String(ScoreBoard.P2Score);
 		document.getElementById("labelP3S").value = String(ScoreBoard.P3Score);
 	},
+	
+	congrats : function(){
+		var winScore = 0;
+		var winName = "";
+		if(P1Score > winScore){
+			winScore = P1Score;
+			winName = P1Name;
+		}
+		if(P2Score > winScore){
+			winScore = P2Score;
+			winName = P2Name;
+		}
+		if(P3Score > winScore){
+			winScore = P3Score;
+			winName = P3Name;
+		}
+		
+		var congratulations = winName + ", Score: $" + winScore;
+		return congratulations;
+	},
 
 	// 1 = refresh name labels
 	// 2 = refresh score labels to roundScores

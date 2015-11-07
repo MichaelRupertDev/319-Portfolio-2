@@ -32,10 +32,13 @@ This is the puzzle div
 This is the keyboard div
 </div>
 
-<div id="scores" style="position:absolute;left:600px;top:450px;height:250px;width:450px;border-style:inset;">
+<div id="scores" style="position:absolute;left:550px;top:450px;height:75px;width:532px;border-style:inset;background-color:blue;">
 This is the scores div
 </div>
 
+<script>
+	document.getElementById("scores").innerHTML = ScoreBoard.run();
+</script>
 <script>
 	document.getElementById("keyboard").innerHTML = Keyboard.run();
 </script>
@@ -47,6 +50,7 @@ $(document).ready(function(){
 	*/
 	var current_angle = 0;
 	var desired_angle = 0;
+	var spin_value;
 	var values = ["Bankrupt", "$500", "$175", "$300", "$200", "$75", "$125", "$100", "$25", "$200" 
 					, "Free Spin", "$100", "$200", "$50", "$450", "Lose A Turn", "$100", "$275", "$75", "$150"
 					, "Buy A Vowel", "$100", "$250", "$50"];
@@ -77,7 +81,8 @@ $(document).ready(function(){
 			adj = Math.floor(adj);
 		}
 		alert("Adjusted Angle = " + adjusted + ", Value:" + values[adj] + ", Index:" + adj + ", Rem: " + rem);
-    });
+		spin_value = values[adj];
+	});
 	
 	// helper function for rotate 
 	jQuery.fn.rotate = function(degrees) {

@@ -96,15 +96,15 @@ Controller : {
 	},
 	
 	clearScore : function(player){
-		if(name == 1){
+		if(player == 1){
 			ScoreBoard.P1RoundScore = 0;
 			document.getElementById("labelP1S").value = String(ScoreBoard.P1RoundScore);
 		}
-		else if(name == 2){
+		else if(player == 2){
 			ScoreBoard.P2RoundScore = 0;
 			document.getElementById("labelP2S").value = String(ScoreBoard.P2RoundScore);
 		}
-		else if(name == 3){
+		else if(player == 3){
 			ScoreBoard.P3RoundScore = 0;
 			document.getElementById("labelP3S").value = String(ScoreBoard.P3RoundScore);
 		}

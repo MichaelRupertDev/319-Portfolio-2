@@ -55,14 +55,9 @@ $(document).ready(function(){
 	ScoreBoard.Controller.changeName(player1.name, 2);
 	ScoreBoard.Controller.changeName(player1.name, 3);
 	ScoreBoard.Controller.refresh(1);
-	game.drawPuzzle("this is a test");
-	var i = 0;
-	while(game.round < 30){
-		game.players[i].doTurn();
-		if(i == 2){
-			i = 0;
-			game.round++;
-		}
-		else i++;
+	var Phrases = ["this is a test", "second round", "third round"];
+	for(game.round = 1; game.round <= 3; game.round++){
+		game.drawPuzzle(Phrases[game.round -1]);
+		game.runRound();
 	}
 });

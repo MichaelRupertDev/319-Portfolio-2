@@ -14,9 +14,12 @@ var WOF = function() {
     this.score = 0;
     this.round = 0;
     this.players = [];
+    this.phrase = "";
+    this.currentPlayer = 1;
   
   this.drawPuzzle = function(phrase){
       var puzzleDiv = $("#puzzle");
+      game.phrase = phrase;
       puzzleDiv.empty();
       var words = phrase.split(' ');
       for(var i = 0; i < words.length; i++){
@@ -26,5 +29,18 @@ var WOF = function() {
           $("#row" + i).append("<div class=\"letter col-md-1\" id=\""+ letters[j] +"\">" + letters[j] + "</div>");
         }
       }
+  }
+
+  this.runRound = function(){
+    var result;
+    while(game.state != "SOLVED"){
+      for(var i = 0; result != "SOLVED" && i < 3; i++){
+        this.currentPlayer = i + 1;
+        result = game.players[i].doTurn();
+      }
+    }
+    ScoreBoard.Controller.endRound();
+    ScoreBoard.Controller.refresh(2);
+    game.state = "SPIN";
   }
 }

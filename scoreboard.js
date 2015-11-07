@@ -125,17 +125,17 @@ Controller : {
 	congrats : function(){
 		var winScore = 0;
 		var winName = "";
-		if(P1Score > winScore){
-			winScore = P1Score;
-			winName = P1Name;
+		if(ScoreBoard.P1Score > winScore){
+			winScore = ScoreBoard.P1Score;
+			winName = ScoreBoard.P1Name;
 		}
-		if(P2Score > winScore){
-			winScore = P2Score;
-			winName = P2Name;
+		if(ScoreBoard.P2Score > winScore){
+			winScore = ScoreBoard.P2Score;
+			winName = ScoreBoard.P2Name;
 		}
-		if(P3Score > winScore){
-			winScore = P3Score;
-			winName = P3Name;
+		if(ScoreBoard.P3Score > winScore){
+			winScore = ScoreBoard.P3Score;
+			winName = ScoreBoard.P3Name;
 		}
 		
 		var congratulations = winName + ", Score: $" + winScore;

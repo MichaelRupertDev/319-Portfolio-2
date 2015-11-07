@@ -4,9 +4,9 @@ $(document).ready(function(){
 	*/
 	var current_angle = 0;
 	var desired_angle = 0;
-	var values = ["Bankrupt", "$500", "$175", "$300", "$200", "$75", "$125", "$100", "$25", "$200" 
-					, "Free Spin", "$100", "$200", "$50", "$450", "Lose A Turn", "$100", "$275", "$75", "$150"
-					, "Buy A Vowel", "$100", "$250", "$50"];
+	var values = ["Bankrupt", "500", "175", "300", "200", "75", "125", "100", "25", "200" 
+					, "Free Spin", "100", "200", "50", "450", "Lose A Turn", "100", "275", "75", "150"
+					, "Buy A Vowel", "100", "250", "50"];
 	// spins the wheel
     spinWheel = function(){
 		desired_angle = Math.floor((Math.random() * 900) + 1);
@@ -32,6 +32,14 @@ $(document).ready(function(){
 		else{
 			adj = Math.floor(adj);
 		}
+		
+		if(parseInt(values[adj]) == NaN){
+			game.spin_value = values[adj];
+		}
+		else{
+			game.spin_value = parseInt(values[adj]);
+		}
+		
 		if(values[adj] == "Bankrupt") game.state == "ENDTURN";
 		else game.state = "CHOOSE";
     };

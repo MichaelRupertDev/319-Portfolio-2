@@ -45,7 +45,7 @@ Player = function(name) {
 	}
 
 	this.solve = function() {
-		var answer = prompt("Would you like to solve? Type answer or N for no.");
+		var answer = prompt("Player " + game.currentPlayer + ", Would you like to solve? Type answer or N for no.");
 		if(answer.toLowerCase() == "n"){
 			return;
 		}

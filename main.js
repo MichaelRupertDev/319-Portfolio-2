@@ -55,13 +55,17 @@ $(document).ready(function(){
 	/**  End of Wheel Logic */
 
 	};
-	var name = prompt("Please enter your name");
+	var name = prompt("Player 1, Please enter your name");
 	player1 = new Player(name);
+	name = prompt("Player 2, Please enter your name");
+	player2 = new Player(name);
+	name = prompt("Player 3, Please enter your name");
+	player3 = new Player(name);
 	game = new WOF();
-	game.players = [player1, new Player('Player 2'), new Player('Player 3')];
+	game.players = [player1, player2, player3];
 	ScoreBoard.Controller.changeName(player1.name, 1);
-	ScoreBoard.Controller.changeName(player1.name, 2);
-	ScoreBoard.Controller.changeName(player1.name, 3);
+	ScoreBoard.Controller.changeName(player2.name, 2);
+	ScoreBoard.Controller.changeName(player3.name, 3);
 	ScoreBoard.Controller.refresh(1);
 	var Phrases = ["Activity Book", "Air Purifier", "Algebra Book", "Artificial Intelligence", "Baby Talk", "Bargains And Freebies", "Barbells", "Bandages", "Banjo Music", "Balsa Wood", "Butterfly Kisses", "Bumper Sticker", "Bubble Wrap", "Broken Promises", "Bright Future", "Pokemon Master", "Crash Test Dummy", "Crazy Scheme", "Feather Boa", "Fax Modem", "Favorite Sleeping Position", "Faux Fur Coat", "Global Enconomy", "Glass Bottle", "Gift Tag"];
 	var Randoms = [0, 0, 0];

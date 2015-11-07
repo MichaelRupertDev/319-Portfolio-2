@@ -8,12 +8,12 @@
 //	Group 11
 //	Kellen Johnson	/ Michael Rupert
 //
-var WOF = function(in_name) {
-
-    this.name = in_name;
-    this.state = "spinning";
+var WOF = function() {
+    this.state = "SPIN";
     this.spin_value = 100;
     this.score = 0;
+    this.round = 0;
+    this.players = [];
   
   this.drawPuzzle = function(phrase){
       var puzzleDiv = $("#puzzle");
@@ -26,15 +26,5 @@ var WOF = function(in_name) {
           $("#row" + i).append("<div class=\"letter col-md-1\" id=\""+ letters[j] +"\">" + letters[j] + "</div>");
         }
       }
-  }
-
-  this.selectLetter = function(letter) {
-    var matches = $("[id=" + letter.toLowerCase() + "]");
-    matches.css("color", "black");
-    if(matches.length != 0){
-        game.score += matches.length * game.spin_value;
-        matches.attr('id', 'chosen');
-        game.state = "SPIN";
-    }
   }
 }

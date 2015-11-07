@@ -3,8 +3,9 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="WOF.js"></script>
-<script src="keyboard.js"></script>
+<script src="player.js"></script>
 <script src="scoreboard.js"></script>
+<script src="main.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="style.css">
@@ -29,75 +30,12 @@ This is the puzzle div
 <button id="puzzleBtn" onclick="game.drawPuzzle('sit and spin');">Get Puzzle</button>
 </div>
 
-<div id="keyboard" style="position:absolute;left:725px;top:300px;height:130px;width:190px;border-style:inset;background-color:gray;">
-This is the keyboard div
-</div>
-
 <div id="scores" style="position:absolute;left:550px;top:450px;height:75px;width:532px;border-style:inset;background-color:blue;">
 This is the scores div
 </div>
 
 <script>
 	document.getElementById("scores").innerHTML = ScoreBoard.run();
-</script>
-<script>
-	document.getElementById("keyboard").innerHTML = Keyboard.run();
-</script>
-
-<script>
-$(document).ready(function(){
-	/**
-		Wheel Logic
-	*/
-	var current_angle = 0;
-	var desired_angle = 0;
-	var spin_value;
-	var values = ["Bankrupt", "$500", "$175", "$300", "$200", "$75", "$125", "$100", "$25", "$200" 
-					, "Free Spin", "$100", "$200", "$50", "$450", "Lose A Turn", "$100", "$275", "$75", "$150"
-					, "Buy A Vowel", "$100", "$250", "$50"];
-	// spins the wheel
-    $("#b1").click(function(){
-	
-		desired_angle = Math.floor((Math.random() * 900) + 1);
-		while(Math.abs(desired_angle - current_angle) < 360){
-			desired_angle = Math.floor((Math.random() * 1800) + 1);
-		}
-		
-		$("#wheel").rotate(desired_angle);
-		current_angle = desired_angle;
-		var adjusted = current_angle;
-		while(adjusted > 360){
-			adjusted = adjusted % 360;
-		}
-		//var adj = Math.ceil((360 - adjusted)/ 360 * 24);
-		var adj = (360 - adjusted)/ 360 * 24;
-		var rem = adj;
-		while(rem > 1){
-			rem --
-		};
-		if(rem > 0.5){
-			adj = Math.ceil(adj);
-		}
-		else{
-			adj = Math.floor(adj);
-		}
-		alert("Adjusted Angle = " + adjusted + ", Value:" + values[adj] + ", Index:" + adj + ", Rem: " + rem);
-		spin_value = values[adj];
-	});
-	
-	// helper function for rotate 
-	jQuery.fn.rotate = function(degrees) {
-    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
-                 '-moz-transform' : 'rotate('+ degrees +'deg)',
-                 '-ms-transform' : 'rotate('+ degrees +'deg)',
-                 'transform' : 'rotate('+ degrees +'deg)'});
-    return $(this);
-	
-	/**  End of Wheel Logic */
-		
-};
-	
-});
 </script>
 
 </html>

@@ -47,11 +47,14 @@ $(document).ready(function(){
 	/**  End of Wheel Logic */
 
 	};
-
 	var name = prompt("Please enter your name");
 	player1 = new Player(name);
 	game = new WOF();
 	game.players = [player1, new Player('Player 2'), new Player('Player 3')];
+	ScoreBoard.Controller.changeName(player1.name, 1);
+	ScoreBoard.Controller.changeName(player1.name, 2);
+	ScoreBoard.Controller.changeName(player1.name, 3);
+	ScoreBoard.Controller.refresh(1);
 	game.drawPuzzle("this is a test");
 	var i = 0;
 	while(game.round < 30){

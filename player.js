@@ -1,7 +1,7 @@
 Player = function(name) {
 	this.name = name;
 	this.score = 0;
-	this.spin_value = 0;
+	this.spin_value = 100;
 
 	this.doTurn = function(){
 		if(game.state == "SPIN") {
@@ -34,7 +34,7 @@ Player = function(name) {
     var matches = $("[id=" + letter.toLowerCase() + "]");
     matches.css("color", "black");
     if(matches.length != 0){
-        this.score += matches.length * this.spin_value;
+        ScoreBoard.Controller.addToRoundScore(matches.length * this.spin_value, 1);
         matches.attr('id', 'chosen');
         this.solve();
         game.state = "SPIN";

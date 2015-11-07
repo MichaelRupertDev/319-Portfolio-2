@@ -33,7 +33,7 @@ $(document).ready(function(){
 			adj = Math.floor(adj);
 		}
 		
-		if(parseInt(values[adj]) == NaN){
+		if(isNaN(parseInt(values[adj]))){
 			game.spin_value = values[adj];
 		}
 		else{
@@ -63,9 +63,15 @@ $(document).ready(function(){
 	ScoreBoard.Controller.changeName(player1.name, 2);
 	ScoreBoard.Controller.changeName(player1.name, 3);
 	ScoreBoard.Controller.refresh(1);
-	var Phrases = ["this is a test", "second round", "third round"];
+	var Phrases = ["Activity Book", "Air Purifier", "Algebra Book", "Artificial Intelligence", "Baby Talk", "Bargains And Freebies", "Barbells", "Bandages", "Banjo Music", "Balsa Wood", "Butterfly Kisses", "Bumper Sticker", "Bubble Wrap", "Broken Promises", "Bright Future", "Pokemon Master", "Crash Test Dummy", "Crazy Scheme", "Feather Boa", "Fax Modem", "Favorite Sleeping Position", "Faux Fur Coat", "Global Enconomy", "Glass Bottle", "Gift Tag"];
+	var Randoms = [0, 0, 0];
+	for(var j = 1; j <= 3; j ++){
+		Randoms[j] = Math.floor((Math.random() * 25) + 1);
+	}
 	for(game.round = 1; game.round <= 3; game.round++){
-		game.drawPuzzle(Phrases[game.round -1]);
+		game.drawPuzzle(Phrases[Randoms[game.round]].toLowerCase());
 		game.runRound();
 	}
+	ScoreBoard.Controller.refresh(3);
+	alert("Congratulations Winner\n" + ScoreBoard.Controller.congrats());
 });

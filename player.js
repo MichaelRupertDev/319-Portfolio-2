@@ -1,14 +1,38 @@
 Player = function(name) {
 	this.name = name;
 	this.score = 0;
+    this.buyAVowel = false;
 
 	this.doTurn = function(){
 		if(game.state == "SPIN") {
-			spinWheel();
-			this.doTurn();
+			this.solve();
+			if(game.state != "SOLVED"){
+				spinWheel();
+				this.doTurn();
+			}
 		}
 		if(game.state == "CHOOSE") {
-			var letter = prompt("Choose a letter: ");
+			switch(game.spin_value){
+				case "Bankrupt":
+					ScoreBoard.Controller.clearScore(game.currentPlayer);
+					game.state = "SPIN";
+					return "ENDTURN";
+					break;
+				case "Lose A Turn":
+					game.state = "SPIN";
+					return "ENDTURN";
+					break;
+				case "Buy A Vowel":
+					this.buyAVowel = true;
+					var letter = prompt("Player" + game.currentPlayer + ", Choose a vowel: ");
+					break;
+				case "Free Spin":
+					spinWheel();
+					break;
+				default:
+					if(game.state != "SOLVED") var letter = prompt("Player" + game.currentPlayer + ", Choose a consonant: ");
+					break;
+			}
 			this.selectLetter(letter);
 		}
 		if(game.state == "ENDTURN") {
@@ -34,20 +58,35 @@ Player = function(name) {
 	}
 
 	this.selectLetter = function(letter) {
-    var matches = $("[id=" + letter.toLowerCase() + "]");
-    matches.css("color", "black");
-    if(matches.length != 0){
-        ScoreBoard.Controller.addToRoundScore(matches.length * game.spin_value, game.currentPlayer);
-        matches.attr('id', 'chosen');
-        game.state = "SPIN";
-        this.solve();
-        ScoreBoard.Controller.refresh(2);
-        this.doTurn();
+		if(game.state == "SOLVED"){
+			this.doTurn();
+			return;
+		}
+		var vowels = "aeiou";
+	    var matches = $("[id=" + letter.toLowerCase() + "]");
+	   	if(this.buyAVowel && vowels.indexOf(letter.toLowerCase()) == -1){
+	    	game.state = "ENDTURN"
+	    	this.buyAVowel = false;
+	    	this.doTurn();
+	    	return;
+	    }
+	    else if(!this.buyAVowel && vowels.indexOf(letter.toLowerCase()) != -1){
+	    	game.state = "ENDTURN"
+	    	this.doTurn();
+	    	return;
+	    }
+	   	matches.css("color", "black");
+	    if(matches.length != 0 && !this.buyAVowel){
+	        ScoreBoard.Controller.addToRoundScore(matches.length * game.spin_value, game.currentPlayer);
+	        matches.attr('id', 'chosen');
+	        game.state = "SPIN";
+	        ScoreBoard.Controller.refresh(2);
+	        this.doTurn();
+	    }
+	    else{
+	    	game.state = "ENDTURN";
+	    	this.doTurn();
+	    }
     }
-    else{
-    	game.state = "ENDTURN";
-    	this.doTurn();
-    }
-  }
 
 }

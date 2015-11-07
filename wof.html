@@ -3,10 +3,17 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="WOF.js"></script>
+<script src="keyboard.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
+<script>
+	var name = prompt("Please enter your name");
+	game = new WOF(name);
+</script>
+
 
 <h1>Wheel of Fortune!</h1>
 <div>
@@ -18,12 +25,20 @@
 
 <div class="container-fluid" id="puzzle" style="position:absolute;left:600px;top:30px;height:250px;width:450px;border-style:inset;background-color:green;">
 This is the puzzle div
-<button id="puzzleBtn" onclick="drawPuzzle('sit and spin');">Get Puzzle</button>
+<button id="puzzleBtn" onclick="game.drawPuzzle('sit and spin');">Get Puzzle</button>
 </div>
 
-<div id="scores" style="position:absolute;left:600px;top:330px;height:250px;width:450px;border-style:inset;">
+<div id="keyboard" style="position:absolute;left:725px;top:300px;height:130px;width:190px;border-style:inset;background-color:gray;">
+This is the keyboard div
+</div>
+
+<div id="scores" style="position:absolute;left:600px;top:450px;height:250px;width:450px;border-style:inset;">
 This is the scores div
 </div>
+
+<script>
+	document.getElementById("keyboard").innerHTML = Keyboard.run();
+</script>
 
 <script>
 $(document).ready(function(){

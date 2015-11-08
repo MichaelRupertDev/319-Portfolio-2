@@ -25,12 +25,16 @@ Player = function(name) {
 				case "Buy A Vowel":
 					this.buyAVowel = true;
 					var letter = prompt("Player" + game.currentPlayer + ", Choose a vowel: ");
+					while(letter == "") letter = prompt("Player" + game.currentPlayer + ", Choose a vowel: ");
 					break;
 				case "Free Spin":
 					spinWheel();
 					break;
 				default:
-					if(game.state != "SOLVED") var letter = prompt("Player" + game.currentPlayer + ", Choose a consonant: ");
+					if(game.state != "SOLVED"){
+						var letter = prompt("Player" + game.currentPlayer + ", Choose a consonant: ");
+						while(letter == "") letter = prompt("Player" + game.currentPlayer + ", Choose a consonant: ");
+					} 
 					break;
 			}
 			this.selectLetter(letter);

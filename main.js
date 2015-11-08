@@ -20,7 +20,7 @@ $(document).ready(function(){
 		while(adjusted > 360){
 			adjusted = adjusted % 360;
 		}
-		//var adj = Math.ceil((360 - adjusted)/ 360 * 24);
+
 		var adj = (360 - adjusted)/ 360 * 24;
 		var rem = adj;
 		while(rem > 1){
